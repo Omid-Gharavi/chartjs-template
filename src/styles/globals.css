@@ -8,7 +8,7 @@
   }
 
   .dropDown {
-    @apply bg-white h-60 overflow-y-scroll shadow-lg absolute w-full flex flex-col gap-1 p-1 rounded-lg border-solid border-[2px] border-black z-20;
+    @apply bg-white h-60 overflow-y-scroll overflow-x-hidden shadow-lg absolute w-full flex flex-col gap-1 p-1 rounded-lg border-solid border-[1px] border-black z-20;
     transition: .3s ease;
   }
 
@@ -21,7 +21,9 @@
     @apply bg-cyan-300;
   }
 
-  .myPower::-webkit-scrollbar {
+  .hiddenScrollBar::-webkit-scrollbar {
     display: none;
   }
+
+  .group {}
 }

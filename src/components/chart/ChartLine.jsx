@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import {
     Chart as Chartjs,
     CategoryScale,
@@ -6,14 +7,12 @@ import {
     LineElement,
     Title,
     Tooltip,
-    // Legend,
     Filler,
-} from "chart.js"
-import { Line } from "react-chartjs-2"
-// import zoomPlugin from 'chartjs-plugin-zoom';
-import { fakeData } from "@/data/fakeData";
+} from 'chart.js';
+import { Line } from 'react-chartjs-2';
+import { fakeData } from '@/data/fakeData';
 
-import { Card, CardBody } from "@nextui-org/react";
+import { Card, CardBody } from '@nextui-org/react';
 
 Chartjs.register({
     CategoryScale,
@@ -23,9 +22,11 @@ Chartjs.register({
     Title,
     Tooltip,
     Filler,
-})
+});
 
 const ChartLine = () => {
+    const [chartData, setChartData] = useState(fakeData);
+
     const options = {
         responsive: true,
         hoverRadius: 6,
@@ -33,15 +34,15 @@ const ChartLine = () => {
         interaction: {
             mode: 'nearest',
             intersect: false,
-            axis: 'x'
+            axis: 'x',
         },
         plugins: {
             tooltip: {
-                enabled: true
+                enabled: true,
             },
             filler: {
                 propagate: false,
-                drawTime: 'beforeDatasetsDraw'
+                drawTime: 'beforeDatasetsDraw',
             },
             zoom: {
                 zoom: {
@@ -49,22 +50,42 @@ const ChartLine = () => {
                         enabled: true,
                     },
                     pinch: {
-                        enabled: true
+                        enabled: true,
                     },
                     mode: 'xy',
-                }
-            }
+                },
+            },
         },
-        // maintainAspectRatio: false,
+    };
+
+    const onClick = () => {
+        const updatedData = {
+            ...chartData,
+            datasets: chartData.datasets.map((data) => {
+                if (data.label === 'Belgium') {
+                    return { ...data, hidden: !data.hidden };
+                }
+                return data;
+            }),
+        };
+        setChartData(updatedData);
     };
 
     return (
         <Card className="grow-[1]">
             <CardBody>
-                <Line options={options} data={fakeData}></Line>
+                <Line
+                    datasetIdKey="id"
+                    options={options}
+                    data={chartData}
+                    onClick={(e) => {
+                        console.log(e);
+                    }}
+                />
+                <button onClick={onClick}>click</button>
             </CardBody>
         </Card>
-    )
-}
+    );
+};
 
-export default ChartLine
+export default ChartLine;

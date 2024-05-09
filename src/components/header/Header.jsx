@@ -1,4 +1,5 @@
 import { Card, CardBody } from '@nextui-org/react'
+import Link from 'next/link'
 import React from 'react'
 
 const Header = () => {
@@ -11,9 +12,10 @@ const Header = () => {
                         <p className='text-2xl font-bold'>Logo</p>
                     </div>
                     <ul className='flex gap-10'>
-                        <li>محصولات</li>
+                        <li><Link href={'/'}>خانه</Link></li>
                         <li>تماس با ما</li>
                         <li>درباره ما</li>
+                        <li><Link href={'/chart'}>جدول</Link ></li>
                     </ul>
                     <div>
                         <p>Signin / Logout</p>

@@ -1,4 +1,6 @@
 import { useState, useRef, useEffect, useReducer, useMemo } from 'react';
+import { MdOutlineClose } from "react-icons/md";
+import { Checkbox } from "@nextui-org/checkbox";
 
 const reducer = (state, action) => {
     switch (action.type) {
@@ -61,31 +63,53 @@ const AutoComplete = ({ options }) => {
             />
             <ul
                 ref={dropdownRef}
-                className={`dropDown bg-white ${toggle ? 'translate-y-2 opacity-100 visible' : 'translate-y-20 opacity-0 invisible'}`}
+                className={`dropDown hiddenScrollBar ${toggle ? 'translate-y-2 opacity-100 visible' : 'translate-y-20 opacity-0 invisible'}`}
             >
                 {filteredItems.map((option, index) => {
-                    return <li
-                        onClick={() => {
-                            if (state.includes(option.label)) {
-                                dispatch({ type: 'DEL', payload: option.label })
-                            } else {
-                                dispatch({ type: 'ADD', payload: option.label })
-                            }
-                        }}
-                        className={`items ${state.includes(option.label) ? 'bg-cyan-300' : ''}`}
-                        key={index + 1}>{option.label}</li>;
+                    return (
+                        // <li
+                        //     onClick={() => {
+                        //         if (state.includes(option.label)) {
+                        //             dispatch({ type: 'DEL', payload: option.label })
+                        //         } else {
+                        //             dispatch({ type: 'ADD', payload: option.label })
+                        //         }
+                        //     }}
+                        //     className={`items ${state.includes(option.label) ? 'bg-cyan-300' : ''}`}
+                        //     key={index + 1}>{option.label}
+                        // </li>
+                        <li
+                            className='w-full'
+                            onClick={() => { }}
+                        >
+                            <Checkbox
+                                className='flex-row-reverse gap-2'
+                                key={index + 1}
+                                size='md'
+                                onClick={() => {
+                                    if (state.includes(option.label)) {
+                                        dispatch({ type: 'DEL', payload: option.label })
+                                    } else {
+                                        dispatch({ type: 'ADD', payload: option.label })
+                                    }
+                                }}
+                                isSelected={state.includes(option.label)}
+                            >{option.label}</Checkbox>
+                        </li>
+                    )
                 })}
             </ul>
-            <div className='myPower w-full flex flex-row-reverse flex-wrap content-start p-2 gap-2 mt-4 h-24 overflow-y-scroll rounded-lg border-solid border-[1px]'>
+            <div className='hiddenScrollBar w-full flex flex-row-reverse flex-wrap content-start p-2 gap-2 mt-4 h-24 overflow-y-scroll rounded-lg border-solid border-[1px]'>
                 {
                     state.map((data, index) => {
                         return (
                             <div className='dark w-fit flex flex-row-reverse items-center gap-2 px-2 border-solid border-black border-[2px] rounded-lg' key={index + 1}>
                                 {data}
                                 <div
-                                    className='rounded-full cursor-pointer bg-red-500 w-4 h-4'
+                                    className='rounded-full flex justify-center items-center border-solid border-[2px] border-black cursor-pointer w-4 h-4'
                                     onClick={() => dispatch({ type: 'DEL', payload: data })}
                                 >
+                                    <MdOutlineClose />
                                 </div>
                             </div>
                         )
