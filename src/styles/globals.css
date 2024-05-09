@@ -6,4 +6,22 @@
   body {
     @apply min-h-screen;
   }
+
+  .dropDown {
+    @apply bg-white h-60 overflow-y-scroll shadow-lg absolute w-full flex flex-col gap-1 p-1 rounded-lg border-solid border-[2px] border-black z-20;
+    transition: .3s ease;
+  }
+
+  .items {
+    @apply rounded-lg select-none p-1 cursor-pointer;
+    transition: .3s ease;
+  }
+
+  .items:hover {
+    @apply bg-cyan-300;
+  }
+
+  .myPower::-webkit-scrollbar {
+    display: none;
+  }
 }

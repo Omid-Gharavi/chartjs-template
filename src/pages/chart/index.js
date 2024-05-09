@@ -5,7 +5,7 @@ import Dashboard from "@/components/dashboard/Dashboard";
 export default function Chart() {
 
     return (
-        <div className="mt-4 p-4 flex gap-4">
+        <div className="m-4 flex max-lg:flex-col gap-4">
             <ChartLine />
             <Dashboard />
         </div>

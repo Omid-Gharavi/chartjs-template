@@ -59,9 +59,9 @@ const ChartLine = () => {
     };
 
     return (
-        <Card className="w-full">
+        <Card className="grow-[1]">
             <CardBody>
-                <Line options={options} data={fakeData} height={100}></Line>
+                <Line options={options} data={fakeData}></Line>
             </CardBody>
         </Card>
     )

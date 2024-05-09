@@ -10,7 +10,7 @@ const Header = () => {
                         {/* <img src="" alt="" /> Logo Image */}
                         <p className='text-2xl font-bold'>Logo</p>
                     </div>
-                    <ul className='flex gap-4'>
+                    <ul className='flex gap-10'>
                         <li>محصولات</li>
                         <li>تماس با ما</li>
                         <li>درباره ما</li>
