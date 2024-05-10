@@ -30,7 +30,7 @@ const AutoComplete = ({ options }) => {
     const Dispatch = useDispatch()
 
     const filteredItems = useMemo(() => {
-        return options.filter(option => option.label.toLowerCase().startsWith(query.toLowerCase()));
+        return options.filter(option => (option.label.toLowerCase().startsWith(query.toLowerCase()) || query === option.id.toString()));
     }, [query, options]);
 
     useEffect(() => {
@@ -47,7 +47,7 @@ const AutoComplete = ({ options }) => {
     }, []);
 
     return (
-        <div className="relative">
+        <div className="relative" dir='ltr'>
             <input
                 ref={inputRef}
                 value={query}
@@ -56,7 +56,7 @@ const AutoComplete = ({ options }) => {
                     setQuery(value)
                 }}
                 onClick={() => setToggle(prev => !prev)}
-                className="cursor-pointer w-full p-2 rounded-lg border-solid border-[1px] border-black"
+                className="autoCompleteInput"
                 type="text"
                 placeholder="انتخاب کشور"
             />
@@ -71,7 +71,7 @@ const AutoComplete = ({ options }) => {
                             key={index + 1}
                         >
                             <Checkbox
-                                className='flex-row-reverse gap-2'
+                                className='gap-2'
                                 color='secondary'
                                 key={index + 1}
                                 size='md'
@@ -93,11 +93,11 @@ const AutoComplete = ({ options }) => {
                     )
                 })}
             </ul>
-            <div className='hiddenScrollBar w-full flex flex-row-reverse flex-wrap content-start p-2 gap-2 mt-4 h-24 overflow-y-scroll rounded-lg border-solid border-[1px]'>
+            <div className='hiddenScrollBar w-full flex flex-wrap content-start p-2 gap-2 mt-4 h-24 overflow-y-scroll rounded-lg border-solid border-[1px]'>
                 {
                     state.map((data, index) => {
                         return (
-                            <div className='dark w-fit flex flex-row-reverse items-center gap-2 px-2 border-solid border-black border-[2px] rounded-lg' key={index + 1}>
+                            <div className='dark w-fit flex items-center gap-2 px-2 border-solid border-black border-[2px] rounded-lg' key={index + 1}>
                                 {data.label}
                                 <div
                                     key={index + 1}
