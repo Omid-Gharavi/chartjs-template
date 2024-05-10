@@ -66,19 +66,9 @@ const AutoComplete = ({ options }) => {
             >
                 {filteredItems.map((option, index) => {
                     return (
-                        // <li
-                        //     onClick={() => {
-                        //         if (state.includes(option.label)) {
-                        //             dispatch({ type: 'DEL', payload: option.label })
-                        //         } else {
-                        //             dispatch({ type: 'ADD', payload: option.label })
-                        //         }
-                        //     }}
-                        //     className={`items ${state.includes(option.label) ? 'bg-cyan-300' : ''}`}
-                        //     key={index + 1}>{option.label}
-                        // </li>
                         <li
                             className='w-full'
+                            key={index + 1}
                         >
                             <Checkbox
                                 className='flex-row-reverse gap-2'
@@ -117,7 +107,7 @@ const AutoComplete = ({ options }) => {
                                         Dispatch(hide({ id: data.id }))
                                     }}
                                 >
-                                    <MdOutlineClose />
+                                    <MdOutlineClose key={index + 1} />
                                 </div>
                             </div>
                         )
