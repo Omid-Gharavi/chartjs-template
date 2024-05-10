@@ -2,13 +2,21 @@
 @tailwind components;
 @tailwind utilities;
 
+input:focus {
+  outline: none;
+}
+
+input {
+  text-align: left;
+}
+
 @layer components {
   body {
     @apply min-h-screen;
   }
 
   .dropDown {
-    @apply bg-white h-60 overflow-y-scroll overflow-x-hidden shadow-lg absolute w-full flex flex-col gap-1 p-1 rounded-lg border-solid border-[1px] border-black z-20;
+    @apply bg-white h-60 overflow-y-scroll overflow-x-hidden shadow-lg absolute w-full flex flex-col gap-1 px-1 py-2 rounded-lg border-solid border-[1px] border-black z-20;
     transition: .3s ease;
   }
 
@@ -25,5 +33,16 @@
     display: none;
   }
 
-  .group {}
+  .autoCompleteInput {
+    @apply text-left bg-default-100 cursor-pointer w-full h-[56px] p-2 rounded-lg;
+    transition: 150ms ease;
+  }
+
+  .autoCompleteInput:hover {
+    @apply bg-default-200;
+  }
+
+  .autoCompleteInput::placeholder {
+    @apply text-right text-black font-thin;
+  }
 }
