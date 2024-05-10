@@ -31,7 +31,7 @@ const AutoComplete = ({ options }) => {
 
     const filteredItems = useMemo(() => {
         return options.filter(option => option.label.toLowerCase().startsWith(query.toLowerCase()));
-    }, [query]);
+    }, [query, options]);
 
     useEffect(() => {
         const handleClickOutside = (event) => {
@@ -110,6 +110,7 @@ const AutoComplete = ({ options }) => {
                             <div className='dark w-fit flex flex-row-reverse items-center gap-2 px-2 border-solid border-black border-[2px] rounded-lg' key={index + 1}>
                                 {data.label}
                                 <div
+                                    key={index + 1}
                                     className='rounded-full flex justify-center items-center border-solid border-[2px] border-black cursor-pointer w-4 h-4'
                                     onClick={() => {
                                         dispatch({ type: 'DEL', payload: data })
