@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import {
     Chart as Chartjs,
     CategoryScale,
@@ -10,9 +9,8 @@ import {
     Filler,
 } from 'chart.js';
 import { Line } from 'react-chartjs-2';
-import { fakeData } from '@/data/fakeData';
-
 import { Card, CardBody } from '@nextui-org/react';
+import { useSelector } from 'react-redux';
 
 Chartjs.register({
     CategoryScale,
@@ -25,7 +23,7 @@ Chartjs.register({
 });
 
 const ChartLine = () => {
-    const [chartData, setChartData] = useState(fakeData);
+    const data = useSelector(state => state.data)
 
     const options = {
         responsive: true,
@@ -58,31 +56,17 @@ const ChartLine = () => {
         },
     };
 
-    const onClick = () => {
-        const updatedData = {
-            ...chartData,
-            datasets: chartData.datasets.map((data) => {
-                if (data.label === 'Belgium') {
-                    return { ...data, hidden: !data.hidden };
-                }
-                return data;
-            }),
-        };
-        setChartData(updatedData);
-    };
-
     return (
         <Card className="grow-[1]">
             <CardBody>
                 <Line
                     datasetIdKey="id"
                     options={options}
-                    data={chartData}
+                    data={data}
                     onClick={(e) => {
                         console.log(e);
                     }}
                 />
-                <button onClick={onClick}>click</button>
             </CardBody>
         </Card>
     );

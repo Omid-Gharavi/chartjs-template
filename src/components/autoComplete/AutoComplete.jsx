@@ -1,6 +1,8 @@
 import { useState, useRef, useEffect, useReducer, useMemo } from 'react';
 import { MdOutlineClose } from "react-icons/md";
 import { Checkbox } from "@nextui-org/checkbox";
+import { useDispatch } from 'react-redux';
+import { hide, show } from '@/app/dataSlice';
 
 const reducer = (state, action) => {
     switch (action.type) {
@@ -25,6 +27,8 @@ const AutoComplete = ({ options }) => {
     const dropdownRef = useRef(null);
     const inputRef = useRef(null);
 
+    const Dispatch = useDispatch()
+
     const filteredItems = useMemo(() => {
         return options.filter(option => option.label.toLowerCase().startsWith(query.toLowerCase()));
     }, [query]);
@@ -42,10 +46,6 @@ const AutoComplete = ({ options }) => {
         };
     }, []);
 
-    useEffect(() => {
-        console.log(state.length)
-    }, [state])
-
     return (
         <div className="relative">
             <input
@@ -54,7 +54,6 @@ const AutoComplete = ({ options }) => {
                 onChange={(e) => {
                     const { value } = e.target
                     setQuery(value)
-                    console.log(options.some(data => data.label.toLowerCase() === value.toLowerCase()))
                 }}
                 onClick={() => setToggle(prev => !prev)}
                 className="cursor-pointer w-full p-2 rounded-lg border-solid border-[1px] border-black"
@@ -80,20 +79,25 @@ const AutoComplete = ({ options }) => {
                         // </li>
                         <li
                             className='w-full'
-                            onClick={() => { }}
                         >
                             <Checkbox
                                 className='flex-row-reverse gap-2'
+                                color='secondary'
                                 key={index + 1}
                                 size='md'
                                 onClick={() => {
-                                    if (state.includes(option.label)) {
-                                        dispatch({ type: 'DEL', payload: option.label })
-                                    } else {
-                                        dispatch({ type: 'ADD', payload: option.label })
+                                    inputRef.current.focus()
+                                    const isOptionSelected = state.includes(option);
+                                    const isStateFull = state.length >= 4;
+
+                                    if (!isOptionSelected && isStateFull) {
+                                        return; // Do nothing if the state is full and the option is not selected
                                     }
+
+                                    dispatch({ type: isOptionSelected ? 'DEL' : 'ADD', payload: option });
+                                    Dispatch(isOptionSelected ? hide({ id: option.id }) : show({ id: option.id }));
                                 }}
-                                isSelected={state.includes(option.label)}
+                                isSelected={state.includes(option)}
                             >{option.label}</Checkbox>
                         </li>
                     )
@@ -104,10 +108,13 @@ const AutoComplete = ({ options }) => {
                     state.map((data, index) => {
                         return (
                             <div className='dark w-fit flex flex-row-reverse items-center gap-2 px-2 border-solid border-black border-[2px] rounded-lg' key={index + 1}>
-                                {data}
+                                {data.label}
                                 <div
                                     className='rounded-full flex justify-center items-center border-solid border-[2px] border-black cursor-pointer w-4 h-4'
-                                    onClick={() => dispatch({ type: 'DEL', payload: data })}
+                                    onClick={() => {
+                                        dispatch({ type: 'DEL', payload: data })
+                                        Dispatch(hide({ id: data.id }))
+                                    }}
                                 >
                                     <MdOutlineClose />
                                 </div>
