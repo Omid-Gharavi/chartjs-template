@@ -1,4 +1,5 @@
 import { store } from "@/app/store";
+import Footer from "@/components/footer/Footer";
 import Header from "@/components/header/Header";
 import "@/styles/globals.css";
 import { NextUIProvider } from "@nextui-org/react";
@@ -11,6 +12,7 @@ export default function App({ Component, pageProps }) {
       <NextUIProvider>
         <Header />
         <Component {...pageProps} />
+        <Footer />
       </NextUIProvider>
     </Provider>
   );

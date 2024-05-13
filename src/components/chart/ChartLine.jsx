@@ -26,6 +26,16 @@ const ChartLine = () => {
     const data = useSelector(state => state.data)
 
     const options = {
+        scales: {
+            y: {
+                min: 1000000,
+                max: 800000000000,
+                ticks: {
+                    stepSize: 10000000000,
+                    callback: (value) => `${value}`,
+                },
+            },
+        },
         responsive: true,
         hoverRadius: 6,
         hoverBackgroundColor: 'orange',

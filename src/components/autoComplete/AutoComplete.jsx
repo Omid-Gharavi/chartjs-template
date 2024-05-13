@@ -55,7 +55,7 @@ const AutoComplete = ({ options }) => {
                     const { value } = e.target
                     setQuery(value)
                 }}
-                onClick={() => setToggle(prev => !prev)}
+                onClick={() => setToggle(true)}
                 className="autoCompleteInput"
                 type="text"
                 placeholder="انتخاب کشور"
