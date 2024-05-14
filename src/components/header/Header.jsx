@@ -28,7 +28,7 @@ const Header = () => {
                         <p>ثبت نام | ورود</p>
                     </Link>
                     <div className="menu" onClick={() => setToggle(!toggle)}>
-                        <div className={`top bg-black rounded-md h-1 w-7 absolute ${toggle ? 'top-[50%] translate-y-[-50%] rotate-45' : 'top-0 translate-y-[0%] rotate-0'}`}></div>
+                        <div className={`top bg-black rounded-md h-1 w-7 absolute ${toggle ? 'top-[50%] translate-y-[-50%] rotate-[224deg]' : 'top-0 translate-y-[0%] rotate-0'}`}></div>
                         <div className={`middle bg-black rounded-md h-1 w-7 absolute top-[50%] translate-y-[-50%] ${toggle ? 'opacity-0' : 'opacity-100'}`}></div>
                         <div className={`bottom bg-black rounded-md h-1 w-7 absolute ${toggle ? 'bottom-[50%] translate-y-[50%] -rotate-45' : 'bottom-0 translate-y-[0%] rotate-0'}`}></div>
                     </div>
