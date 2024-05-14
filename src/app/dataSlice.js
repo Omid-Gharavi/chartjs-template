@@ -43,7 +43,10 @@ export const dataSlice = createSlice({
                         for (let i = 1; i <= y; i++) {
                             state.labels.unshift((state.labels[state.labels.length - 1] - i))
                         }
-                        // const 
+                        state.datasets.map((data, index) => {
+                            console.log(data.data.length)
+                            data.data = data.data.slice(myNum - 1960);
+                        });
                     } else if (key === 'end') {
                         state.labels = state.labels.slice(0, 1)
                         const x = [state.labels[0], myNum].sort((a, b) => a - b)

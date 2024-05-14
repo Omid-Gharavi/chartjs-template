@@ -48,4 +48,20 @@ input {
   .autoCompleteInput::placeholder {
     @apply text-right text-black font-thin;
   }
+
+  .menu {
+    @apply relative hidden max-lg:block w-7 h-5;
+  }
+
+  .top {
+    transition: .5s ease;
+  }
+
+  .middle {
+    transition: .5s ease;
+  }
+
+  .bottom {
+    transition: .5s ease;
+  }
 }

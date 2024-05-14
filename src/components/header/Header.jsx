@@ -1,107 +1,39 @@
 // import { Card, CardBody, Navbar, NavbarBrand, NavbarContent, NavbarItem, Button } from '@nextui-org/react'
-import { Navbar, NavbarBrand, NavbarMenuToggle, NavbarMenuItem, NavbarMenu, NavbarContent, NavbarItem, Button } from "@nextui-org/react";
+import { Card, CardBody } from "@nextui-org/react";
 import Link from 'next/link'
-import React, { useState } from 'react'
+import { useState } from 'react'
+import { GoSignIn } from "react-icons/go";
 
 const Header = () => {
-    const [isMenuOpen, setIsMenuOpen] = useState(false);
-
-    const menuItems = [
-        {
-            name: 'خانه',
-            href: '/'
-        },
-        {
-            name: 'جدول',
-            href: '/chart'
-        },
-        {
-            name: 'درباره ما',
-            href: '#'
-        },
-    ];
+    const [toggle, setToggle] = useState(false)
 
     return (
         <>
-            {/* <Card className='rounded-none'>
-                <CardBody className='flex flex-row justify-between items-center'>
+            <Card className='rounded-none sticky top-0 z-20'>
+                <CardBody className='flex flex-row px-10 max-lg:px-4 py-6 justify-between items-center'>
                     <div>
-                        <img src="" alt="" /> Logo Image
+                        {/* <img src="" alt="Logo" /> */}
                         <p className='text-2xl font-bold'>Logo</p>
                     </div>
                     <ul className='flex gap-10 max-xl:hidden'>
                         <li><Link href={'/'}>خانه</Link></li>
-                        <li>تماس با ما</li>
-                        <li>درباره ما</li>
+                        <li><Link href={"#"}>تماس با ما</Link></li>
+                        <li><Link href={'#'}>درباره ما</Link></li>
                         <li><Link href={'/chart'}>جدول</Link ></li>
                     </ul>
-                    <div className='max-xl:hidden'>
-                        <p>Signin / Logout</p>
+                    <Link
+                        href={'#'}
+                        className='flex gap-2 justify-center items-center max-xl:hidden rounded-lg border-zinc-500 border-[1px] px-4 py-2'>
+                        <GoSignIn />
+                        <p>ثبت نام | ورود</p>
+                    </Link>
+                    <div className="menu" onClick={() => setToggle(!toggle)}>
+                        <div className={`top bg-black rounded-md h-1 w-7 absolute ${toggle ? 'top-[50%] translate-y-[-50%] rotate-45' : 'top-0 translate-y-[0%] rotate-0'}`}></div>
+                        <div className={`middle bg-black rounded-md h-1 w-7 absolute top-[50%] translate-y-[-50%] ${toggle ? 'opacity-0' : 'opacity-100'}`}></div>
+                        <div className={`bottom bg-black rounded-md h-1 w-7 absolute ${toggle ? 'bottom-[50%] translate-y-[50%] -rotate-45' : 'bottom-0 translate-y-[0%] rotate-0'}`}></div>
                     </div>
-
                 </CardBody>
-            </Card> */}
-
-            <Navbar isBordered isBlurred isMenuOpen={isMenuOpen} onMenuOpenChange={setIsMenuOpen} className="justify-center">
-                <NavbarContent className="sm:hidden" justify="start">
-                    <NavbarMenuToggle aria-label={isMenuOpen ? "Close menu" : "Open menu"} />
-                </NavbarContent>
-                <div>
-                    <NavbarContent>
-                        <p className="font-bold text-inherit">Logo</p>
-                    </NavbarContent>
-                </div>
-                <div>
-                    <NavbarContent className="hidden sm:flex gap-10" justify="center">
-                        <NavbarItem>
-                            <Link color="foreground" href="/">
-                                خانه
-                            </Link>
-                        </NavbarItem>
-                        <NavbarItem>
-                            <Link href="/chart">
-                                جدول
-                            </Link>
-                        </NavbarItem>
-                        <NavbarItem>
-                            <Link color="foreground" href="#">
-                                درباره ما
-                            </Link>
-                        </NavbarItem>
-                    </NavbarContent>
-                </div>
-                <div className="max-xl:hidden">
-                    <NavbarContent justify="end">
-                        <NavbarItem className="hidden lg:flex">
-                            <Link href="#">Login</Link>
-                        </NavbarItem>
-                        <NavbarItem>
-                            <Button as={Link} color="primary" href="#" variant="flat">
-                                Sign Up
-                            </Button>
-                        </NavbarItem>
-                    </NavbarContent>
-                </div>
-
-
-                <NavbarMenu>
-                    {menuItems.map((item, index) => (
-                        <NavbarMenuItem key={`${item}-${index}`}>
-                            <Link
-                                className="w-full"
-                                color={
-                                    index === 2 ? "warning" : index === menuItems.length - 1 ? "danger" : "foreground"
-                                }
-                                href={item.href}
-                                size="lg"
-                                onClick={() => setIsMenuOpen(false)}
-                            >
-                                {item.name}
-                            </Link>
-                        </NavbarMenuItem>
-                    ))}
-                </NavbarMenu>
-            </Navbar>
+            </Card>
         </>
     )
 }
