@@ -2,7 +2,7 @@ import { useState, useRef, useEffect, useReducer, useMemo } from 'react';
 import { MdOutlineClose } from "react-icons/md";
 import { Checkbox } from "@nextui-org/checkbox";
 import { useDispatch } from 'react-redux';
-import { hide, show } from '@/app/dataSlice';
+import { clear, hide, show } from '@/app/dataSlice';
 
 const reducer = (state, action) => {
     switch (action.type) {
@@ -39,8 +39,8 @@ const AutoComplete = ({ options }) => {
                 setToggle(false);
             }
         };
-
         document.addEventListener('mousedown', handleClickOutside);
+        Dispatch(clear())
         return () => {
             document.removeEventListener('mousedown', handleClickOutside);
         };
