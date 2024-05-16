@@ -72,7 +72,7 @@ const AutoComplete = ({ options }) => {
                         >
                             <Checkbox
                                 className='gap-2'
-                                color='secondary'
+                                color='primary'
                                 key={index + 1}
                                 size='md'
                                 onClick={() => {

@@ -57,7 +57,6 @@ export const dataSlice = createSlice({
                         state.datasets.map((data, index) => {
                             if (newDataSets[index]) {
                                 const missingValues = newDataSets[index].filter(value => !data.data.includes(value))
-                                console.log(missingValues)
                                 data.data.unshift(...missingValues)
                                 data.data = data.data.slice(myNum - 1960)
                             }
@@ -68,8 +67,6 @@ export const dataSlice = createSlice({
                             const b = z[1]
                             const l = z[0]
                             const res = b - l
-                            console.log('Biggest:', b)
-                            console.log('Lowest', l)
                             const newTest = parseInt(state.labels[state.labels.length - 1])
                             for (let i = 1; i <= res; i++) {
                                 state.labels.push((newTest + i).toString())
@@ -78,25 +75,17 @@ export const dataSlice = createSlice({
                             const y = state.labels[state.labels.length - 1] - myNum
                             state.labels = state.labels.slice(0, state.labels.length - (y))
                         }
-                        // state.datasets.map((data, index) => {
-                        //     if (newDataSets[index]) {
-                        //         const missingValues = newDataSets[index].filter(value => !data.data.includes(value))
-                        //         console.log(missingValues)
-                        //         data.data.push(...missingValues)
-                        //         data.data = data.data.slice(0, (data.data.length - (2020 - myNum)))
-                        //     }
-                        // })
                     }
                 }
             } else return
         },
         clear(state, action) {
             return {
-                ...state, // Keep the existing state structure
+                ...state,
                 datasets: state.datasets.map((data, index) => ({
-                    ...data, // Keep existing data properties
+                    ...data,
                     hidden: true,
-                    data: newDataSets[index], // Update data property with specific dataset from newDataSets
+                    data: newDataSets[index],
                 })),
                 labels: newLabels,
             };
