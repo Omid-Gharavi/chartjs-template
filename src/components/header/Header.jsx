@@ -1,8 +1,11 @@
 // import { Card, CardBody, Navbar, NavbarBrand, NavbarContent, NavbarItem, Button } from '@nextui-org/react'
 import { Card, CardBody } from "@nextui-org/react";
 import Link from 'next/link'
-import { useState } from 'react'
+import { createContext, useState } from 'react'
 import { GoSignIn } from "react-icons/go";
+import SidebarMenu from "../sidebarMenu/SidebarMenu";
+
+export const ToggleContext = createContext()
 
 const Header = () => {
     const [toggle, setToggle] = useState(false)
@@ -34,6 +37,9 @@ const Header = () => {
                     </div>
                 </CardBody>
             </Card>
+            <ToggleContext.Provider value={{ toggle, setToggle }}>
+                <SidebarMenu />
+            </ToggleContext.Provider>
         </>
     )
 }
