@@ -1,5 +1,5 @@
 import { fakeData } from "@/data/fakeData";
-import { createSlice, current } from "@reduxjs/toolkit";
+import { createSlice } from "@reduxjs/toolkit";
 
 const deepCopy = (obj) => {
     if (typeof obj !== 'object' || obj === null) return obj

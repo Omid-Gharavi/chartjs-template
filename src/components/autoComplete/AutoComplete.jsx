@@ -81,7 +81,7 @@ const AutoComplete = ({ options }) => {
                                     const isStateFull = state.length >= 4;
 
                                     if (!isOptionSelected && isStateFull) {
-                                        return; // Do nothing if the state is full and the option is not selected
+                                        return;
                                     }
 
                                     dispatch({ type: isOptionSelected ? 'DEL' : 'ADD', payload: option });
