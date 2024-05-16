@@ -14,7 +14,7 @@ export default function App({ Component, pageProps }) {
   useEffect(() => {
     let timer;
     const startLoading = () => {
-      timer = setTimeout(() => setLoading(true), 100); // Show loading after 1 second
+      timer = setTimeout(() => setLoading(true), 10); // Show loading after 1 second
     };
     const endLoading = () => {
       clearTimeout(timer);
