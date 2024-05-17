@@ -32,7 +32,14 @@ const ChartLine = () => {
                 max: 800000000000,
                 ticks: {
                     stepSize: 10000000000,
-                    callback: (value) => `${value}`,
+                    callback: (value) => {
+                        if (value >= 1000000000) {
+                            return `${Math.floor(value / 1000000000)}bn`; // Formatting in milliards
+                        } else if (value >= 1000000) {
+                            return `${Math.floor(value / 1000000)}m`; // Formatting in millions
+                        }
+                        return value;
+                    },
                 },
             },
         },
@@ -47,27 +54,38 @@ const ChartLine = () => {
         plugins: {
             tooltip: {
                 enabled: true,
-            },
-            filler: {
-                propagate: false,
-                drawTime: 'beforeDatasetsDraw',
-            },
-            zoom: {
+                callbacks: {
+                    label: (tooltipItem) => {
+                        let value = tooltipItem.raw;
+                        if (value >= 1000000000) {
+                            return `${Math.floor(value / 1000000000)} milliard`; // Formatting in milliards
+                        } else if (value >= 1000000) {
+                            return `${Math.floor(value / 1000000)}m`; // Formatting in millions
+                        }
+                        return value;
+                    },
+                },
+                filler: {
+                    propagate: false,
+                    drawTime: 'beforeDatasetsDraw',
+                },
                 zoom: {
-                    wheel: {
-                        enabled: true,
+                    zoom: {
+                        wheel: {
+                            enabled: true,
+                        },
+                        pinch: {
+                            enabled: true,
+                        },
+                        mode: 'xy',
                     },
-                    pinch: {
-                        enabled: true,
-                    },
-                    mode: 'xy',
                 },
             },
-        },
+        }
     };
 
     return (
-        <Card className="grow-[1]">
+        <Card className="grow-[1]" >
             <CardBody>
                 <Line
                     datasetIdKey="id"
@@ -78,7 +96,7 @@ const ChartLine = () => {
                     }}
                 />
             </CardBody>
-        </Card>
+        </Card >
     );
 };
 
