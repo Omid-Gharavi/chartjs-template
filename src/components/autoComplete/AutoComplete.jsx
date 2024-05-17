@@ -48,6 +48,7 @@ const AutoComplete = ({ options }) => {
 
     return (
         <div className="relative" dir='ltr'>
+            <p className='text-right'>:انتخاب کشور</p>
             <input
                 ref={inputRef}
                 value={query}
@@ -56,7 +57,7 @@ const AutoComplete = ({ options }) => {
                     setQuery(value)
                 }}
                 onClick={() => setToggle(true)}
-                className="autoCompleteInput"
+                className="autoCompleteInput mt-4"
                 type="text"
                 placeholder="انتخاب کشور"
             />

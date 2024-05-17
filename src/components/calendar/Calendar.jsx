@@ -10,7 +10,6 @@ const Calendar = () => {
     })
 
     const dispatch = useDispatch()
-    const data = useSelector(state => state.data)
 
     const handleInputChange = (key, value) => {
         const reg = /^(\d{0,4})$/g
@@ -26,19 +25,22 @@ const Calendar = () => {
     }
 
     return (
-        <div className="flex gap-4 items-center">
-            <Input
-                value={inputs.end}
-                onChange={(e) => handleInputChange('end', e.target.value)}
-                label='پایان'
-            />
-            :
-            <Input
-                value={inputs.start}
-                onChange={(e) => handleInputChange('start', e.target.value)}
-                label='شروع'
-            />
-        </div>
+        <>
+            <p className="text-right">انتخاب سال:</p>
+            <div className="flex gap-4 items-center mt-4">
+                <Input
+                    value={inputs.end}
+                    onChange={(e) => handleInputChange('end', e.target.value)}
+                    label='پایان'
+                />
+                :
+                <Input
+                    value={inputs.start}
+                    onChange={(e) => handleInputChange('start', e.target.value)}
+                    label='شروع'
+                />
+            </div>
+        </>
     )
 }
 

@@ -44,37 +44,41 @@ export const dataSlice = createSlice({
             if (value >= 1960 && value <= 2020) {
                 if (value.length === 4) {
                     if (key === 'start') {
-                        if (!state.labels.includes(myNum.toString())) {
-                            const y = state.labels[0] - myNum
-                            const firstIndex = parseInt(state.labels[0])
-                            for (let i = 1; i <= y; i++) {
-                                state.labels.unshift((firstIndex - i).toString())
+                        if (myNum <= state.labels[state.labels.length - 1]) {
+                            if (!state.labels.includes(myNum.toString())) {
+                                const y = state.labels[0] - myNum
+                                const firstIndex = parseInt(state.labels[0])
+                                for (let i = 1; i <= y; i++) {
+                                    state.labels.unshift((firstIndex - i).toString())
+                                }
+                            } else {
+                                const y = myNum - state.labels[0]
+                                state.labels = state.labels.slice(y)
                             }
-                        } else {
-                            const y = myNum - state.labels[0]
-                            state.labels = state.labels.slice(y)
-                        }
-                        state.datasets.map((data, index) => {
-                            if (newDataSets[index]) {
-                                const missingValues = newDataSets[index].filter(value => !data.data.includes(value))
-                                data.data.unshift(...missingValues)
-                                data.data = data.data.slice(myNum - 1960)
-                            }
-                        })
+                            state.datasets.map((data, index) => {
+                                if (newDataSets[index]) {
+                                    const missingValues = newDataSets[index].filter(value => !data.data.includes(value))
+                                    data.data.unshift(...missingValues)
+                                    data.data = data.data.slice(myNum - 1960)
+                                }
+                            })
+                        } else return
                     } else if (key === 'end') {
-                        if (!state.labels.includes(myNum.toString())) {
-                            const z = [myNum, state.labels[state.labels.length - 1]].sort((a, b) => a - b)
-                            const b = z[1]
-                            const l = z[0]
-                            const res = b - l
-                            const newTest = parseInt(state.labels[state.labels.length - 1])
-                            for (let i = 1; i <= res; i++) {
-                                state.labels.push((newTest + i).toString())
+                        if (myNum >= state.labels[0]) {
+                            if (!state.labels.includes(myNum.toString())) {
+                                const z = [myNum, state.labels[state.labels.length - 1]].sort((a, b) => a - b)
+                                const b = z[1]
+                                const l = z[0]
+                                const res = b - l
+                                const newTest = parseInt(state.labels[state.labels.length - 1])
+                                for (let i = 1; i <= res; i++) {
+                                    state.labels.push((newTest + i).toString())
+                                }
+                            } else {
+                                const y = state.labels[state.labels.length - 1] - myNum
+                                state.labels = state.labels.slice(0, state.labels.length - (y))
                             }
-                        } else {
-                            const y = state.labels[state.labels.length - 1] - myNum
-                            state.labels = state.labels.slice(0, state.labels.length - (y))
-                        }
+                        } else return
                     }
                 }
             } else return

@@ -31,7 +31,7 @@ const Footer = () => {
                             ))
                         }
                     </div>
-                    <ul className='flex gap-4'>
+                    <ul className='flex gap-10'>
                         {
                             pages.map((page, index) => (
                                 <li key={index + 1} className=''><Link href={page.href}>{page.name}</Link></li>
