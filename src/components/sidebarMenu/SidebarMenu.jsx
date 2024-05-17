@@ -9,7 +9,7 @@ const SidebarMenu = () => {
 
     return (
         <Card
-            className={`absolute z-50 inset-y-0 w-[250px] transition-all duration-[0.5s] ease-in-out  ${toggle ? 'translate-x-[0px]' : 'translate-x-[250px]'}`}>
+            className={`fixed z-50 inset-y-0 w-[250px] transition-all duration-[0.5s] ease-in-out  ${toggle ? 'translate-x-[0px]' : 'translate-x-[250px]'}`}>
             <CardBody className='text-right'>
                 <div>
                     {/* <img src="" alt="" /> */}

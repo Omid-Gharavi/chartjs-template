@@ -22,7 +22,8 @@ const Footer = () => {
     return (
         <>
             <Card className='rounded-none'>
-                <CardBody className='flex flex-col items-center py-10'>
+                <CardBody className='flex flex-col items-center gap-8 py-7'>
+                    {/* <p className='font-bold'>Logo</p> */}
                     <div className='flex gap-7'>
                         {
                             socialIcons.map(icon => (
@@ -30,7 +31,7 @@ const Footer = () => {
                             ))
                         }
                     </div>
-                    <ul className='flex gap-4 mt-10'>
+                    <ul className='flex gap-4'>
                         {
                             pages.map(page => (
                                 <li className=''><Link href={page.href}>{page.name}</Link></li>
