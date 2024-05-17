@@ -50,7 +50,9 @@ input {
   text-align: left;
 }
 
-* {
+*,
+*::after,
+*::before {
   font-family: vazir, sans-serif;
 }
 
