@@ -54,17 +54,6 @@ const ChartLine = () => {
         plugins: {
             tooltip: {
                 enabled: true,
-                callbacks: {
-                    label: (tooltipItem) => {
-                        let value = tooltipItem.raw;
-                        if (value >= 1000000000) {
-                            return `${Math.floor(value / 1000000000)} milliard`; // Formatting in milliards
-                        } else if (value >= 1000000) {
-                            return `${Math.floor(value / 1000000)}m`; // Formatting in millions
-                        }
-                        return value;
-                    },
-                },
                 filler: {
                     propagate: false,
                     drawTime: 'beforeDatasetsDraw',
