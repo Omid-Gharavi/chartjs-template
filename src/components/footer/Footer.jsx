@@ -1,44 +1,55 @@
 import { Card, CardBody } from '@nextui-org/react'
 import React from 'react'
+import { BiLogoTelegram } from "react-icons/bi";
+import { AiOutlineInstagram } from "react-icons/ai";
+import { RiFacebookFill } from "react-icons/ri";
+import { pages } from '../header/Header';
+import Link from 'next/link';
 
 const Footer = () => {
+    const socialIcons = [
+        {
+            icon: <RiFacebookFill />
+        },
+        {
+            icon: <AiOutlineInstagram />
+        },
+        {
+            icon: <BiLogoTelegram />
+        },
+    ]
+
     return (
         <>
             <Card className='rounded-none'>
-                <CardBody>
-                    <div className='py-10 flex max-xl:flex-col max-xl:items-center flex-row-reverse flex-wrap justify-center gap-10'>
-                        <div className='mr-11 max-xl:mr-[unset]'>
-                            <img src="" alt="" />
-                            <p className='font-bold text-2xl'>Logo</p>
-                        </div>
-                        <ul>
-                            <li>Click</li>
-                            <div className='flex flex-col gap-1 mt-4'>
-                                <li>Home</li>
-                                <li>Contact</li>
-                                <li>About</li>
-                            </div>
-                        </ul>
-                        <ul>
-                            <li>Click</li>
-                            <div className='flex flex-col gap-1 mt-4'>
-                                <li>Home</li>
-                                <li>Contact</li>
-                                <li>About</li>
-                            </div>
-                        </ul>
-                        <ul>
-                            <li>Click</li>
-                            <div className='flex flex-col gap-1 mt-4'>
-                                <li>Home</li>
-                                <li>Contact</li>
-                                <li>About</li>
-                            </div>
-                        </ul>
+                <CardBody className='flex flex-col items-center py-10'>
+                    <div className='flex gap-7'>
+                        {
+                            socialIcons.map(icon => (
+                                <SocialMedia icon={icon.icon} />
+                            ))
+                        }
                     </div>
+                    <ul className='flex gap-4 mt-10'>
+                        {
+                            pages.map(page => (
+                                <li className=''><Link href={page.href}>{page.name}</Link></li>
+                            ))
+                        }
+                    </ul>
                 </CardBody>
+                <div className='flex justify-center items-center pb-2 bg-zinc-100'>Chartjs</div>
             </Card>
         </>
+    )
+}
+
+const SocialMedia = ({ icon }) => {
+    return (
+        <div
+            className='socialMedia'>
+            {icon}
+        </div>
     )
 }
 

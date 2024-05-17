@@ -14,7 +14,7 @@ export default function App({ Component, pageProps }) {
   useEffect(() => {
     let timer;
     const startLoading = () => {
-      timer = setTimeout(() => setLoading(true), 10); // Show loading after 1 second
+      timer = setTimeout(() => setLoading(true), 10);
     };
     const endLoading = () => {
       clearTimeout(timer);
@@ -29,7 +29,7 @@ export default function App({ Component, pageProps }) {
       Router.events.off('routeChangeStart', startLoading);
       Router.events.off('routeChangeComplete', endLoading);
       Router.events.off('routeChangeError', endLoading);
-      clearTimeout(timer); // Cleanup timer on unmount
+      clearTimeout(timer);
     };
   }, []);
 

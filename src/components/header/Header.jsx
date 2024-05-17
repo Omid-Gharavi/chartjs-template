@@ -6,6 +6,24 @@ import { GoSignIn } from "react-icons/go";
 import SidebarMenu from "../sidebarMenu/SidebarMenu";
 
 export const ToggleContext = createContext()
+export const pages = [
+    {
+        name: 'خانه',
+        href: '/'
+    },
+    {
+        name: 'تماس با ما',
+        href: '#'
+    },
+    {
+        name: 'درباره ما',
+        href: '#'
+    },
+    {
+        name: 'جدول',
+        href: '/chart'
+    },
+]
 
 const Header = () => {
     const [toggle, setToggle] = useState(false)
@@ -19,10 +37,11 @@ const Header = () => {
                         <p className='text-2xl font-bold'>Logo</p>
                     </div>
                     <ul className='flex gap-10 max-xl:hidden'>
-                        <li><Link href={'/'}>خانه</Link></li>
-                        <li><Link href={"#"}>تماس با ما</Link></li>
-                        <li><Link href={'#'}>درباره ما</Link></li>
-                        <li><Link href={'/chart'}>جدول</Link ></li>
+                        {
+                            pages.map(page => (
+                                <li><Link href={page.href}>{page.name}</Link></li>
+                            ))
+                        }
                     </ul>
                     <Link
                         href={'#'}
