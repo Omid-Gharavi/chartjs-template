@@ -39,7 +39,7 @@ const Footer = () => {
                         }
                     </ul>
                 </CardBody>
-                <div className='flex justify-center items-center pb-2 bg-zinc-100'>Chartjs</div>
+                <div className='flex justify-center items-center py-1 bg-zinc-100'>Chartjs</div>
             </Card>
         </>
     )
