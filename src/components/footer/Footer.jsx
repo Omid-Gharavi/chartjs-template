@@ -26,15 +26,15 @@ const Footer = () => {
                     {/* <p className='font-bold'>Logo</p> */}
                     <div className='flex gap-7'>
                         {
-                            socialIcons.map(icon => (
-                                <SocialMedia icon={icon.icon} />
+                            socialIcons.map((icon, index) => (
+                                <SocialMedia key={index + 1} icon={icon.icon} />
                             ))
                         }
                     </div>
                     <ul className='flex gap-4'>
                         {
-                            pages.map(page => (
-                                <li className=''><Link href={page.href}>{page.name}</Link></li>
+                            pages.map((page, index) => (
+                                <li key={index + 1} className=''><Link href={page.href}>{page.name}</Link></li>
                             ))
                         }
                     </ul>
