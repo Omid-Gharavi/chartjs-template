@@ -44,7 +44,7 @@ const Header = () => {
                         }
                     </ul>
                     <Link
-                        href={'#'}
+                        href={'/signup'}
                         className='flex gap-2 justify-center items-center max-xl:hidden rounded-lg border-zinc-500 border-[1px] px-4 py-2'>
                         <GoSignIn />
                         <p>ثبت نام | ورود</p>

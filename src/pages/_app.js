@@ -4,7 +4,7 @@ import Header from "@/components/header/Header";
 import Loading from "@/components/loading/Loading";
 import "@/styles/globals.css";
 import { NextUIProvider } from "@nextui-org/react";
-import { Router } from "next/router";
+import { Router, useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { Provider } from "react-redux";
 
@@ -33,16 +33,26 @@ export default function App({ Component, pageProps }) {
     };
   }, []);
 
+  const router = useRouter()
+
   return (
     <>
       {loading && <Loading />}
       <Provider store={store}>
         <NextUIProvider>
-          <div className="relative">
-            <Header />
-            <Component {...pageProps} />
-            <Footer />
-          </div>
+          {
+            router.pathname === '/signup' ?
+              <div className="relative">
+                <Header />
+                <Component {...pageProps} />
+              </div>
+              :
+              <div className="relative">
+                <Header />
+                <Component {...pageProps} />
+                <Footer />
+              </div>
+          }
         </NextUIProvider>
       </Provider>
     </>
