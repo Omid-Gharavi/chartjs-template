@@ -1,5 +1,5 @@
 import { fakeData } from "@/data/fakeData";
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
 const deepCopy = (obj) => {
     if (typeof obj !== 'object' || obj === null) return obj
@@ -15,6 +15,10 @@ const deepCopy = (obj) => {
 const initialState = deepCopy(fakeData)
 const newDataSets = fakeData.datasets.map(data => data.data.map(datas => datas))
 const newLabels = fakeData.labels
+
+const fetchDatas = createAsyncThunk('', () => {
+
+})
 
 export const dataSlice = createSlice({
     name: 'data',
@@ -94,6 +98,9 @@ export const dataSlice = createSlice({
                 labels: newLabels,
             };
         }
+    },
+    extraReducers(builder) {
+        // builder.addCase()
     }
 })
 
