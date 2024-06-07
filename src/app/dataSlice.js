@@ -13,12 +13,14 @@ const deepCopy = (obj) => {
 }
 
 const initialState = deepCopy(fakeData)
-const newDataSets = fakeData.datasets.map(data => data.data.map(datas => datas))
 const newLabels = fakeData.labels
+var newDataSets = []
 
 export const fetchDatas = createAsyncThunk('chart/api', async () => {
     try {
         const res = await (await fetch('https://chartjsapi.afarineshweb.ir/wp-json/chart/v1/chart/data?start_date=1960&country=Burundi,China&indicator=GDP%20(current%20US$)')).json()
+        newDataSets = res.map(value => value.values)
+        console.log('Fetched Datas:', newDataSets)
         return res
     } catch (err) {
         console.error(err)
@@ -65,8 +67,9 @@ export const dataSlice = createSlice({
                                 state.labels = state.labels.slice(y)
                             }
                             state.datasets.map((data, index) => {
-                                if (newDataSets[index]) {
+                                if (newDataSets[index] && data.data) {
                                     const missingValues = newDataSets[index].filter(value => !data.data.includes(value))
+                                    console.log(missingValues)
                                     data.data.unshift(...missingValues)
                                     data.data = data.data.slice(myNum - 1960)
                                 }
