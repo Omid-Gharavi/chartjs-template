@@ -11,6 +11,7 @@ import {
 import { Line } from 'react-chartjs-2';
 import { Card, CardBody } from '@nextui-org/react';
 import { useSelector } from 'react-redux';
+import { useEffect } from 'react';
 
 Chartjs.register({
     CategoryScale,
@@ -24,6 +25,11 @@ Chartjs.register({
 
 const ChartLine = () => {
     const data = useSelector(state => state.data)
+
+    useEffect(() => {
+        console.log(data.datasets.map(value => value.data.map(values => values)))
+    }, [])
+
 
     const options = {
         scales: {

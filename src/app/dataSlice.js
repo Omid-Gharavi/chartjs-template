@@ -1,5 +1,5 @@
 import { fakeData } from "@/data/fakeData";
-import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import { createSlice, createAsyncThunk, current } from "@reduxjs/toolkit";
 
 const deepCopy = (obj) => {
     if (typeof obj !== 'object' || obj === null) return obj
@@ -16,8 +16,13 @@ const initialState = deepCopy(fakeData)
 const newDataSets = fakeData.datasets.map(data => data.data.map(datas => datas))
 const newLabels = fakeData.labels
 
-const fetchDatas = createAsyncThunk('', () => {
-
+export const fetchDatas = createAsyncThunk('chart/api', async () => {
+    try {
+        const res = await (await fetch('https://chartjsapi.afarineshweb.ir/wp-json/chart/v1/chart/data?start_date=1960&country=Burundi,China&indicator=GDP%20(current%20US$)')).json()
+        return res
+    } catch (err) {
+        console.error(err)
+    }
 })
 
 export const dataSlice = createSlice({
@@ -100,7 +105,16 @@ export const dataSlice = createSlice({
         }
     },
     extraReducers(builder) {
-        // builder.addCase()
+        builder.addCase(fetchDatas.fulfilled, (state, action) => {
+            state.datasets.map((data, index) => {
+                if (action.payload) {
+                    data.label = action.payload[index].country
+                    data.data = action.payload[index].values
+                }
+            })
+        }).addCase(fetchDatas.rejected, () => {
+            console.error('The Fetch is Rejected!')
+        })
     }
 })
 

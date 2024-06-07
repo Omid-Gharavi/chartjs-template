@@ -14,7 +14,7 @@ const reducer = (state, action) => {
                 return state
             }
         case 'DEL':
-            return state.filter(data => data !== action.payload);
+            return state.filter(data => data.id !== action.payload.id);
         default:
             return state;
     }
@@ -67,30 +67,37 @@ const AutoComplete = ({ options }) => {
             >
                 {filteredItems.map((option, index) => {
                     return (
-                        <li
-                            className='w-full'
-                            key={index + 1}
-                        >
-                            <Checkbox
-                                className='gap-2'
-                                color='primary'
-                                key={index + 1}
-                                size='md'
-                                onClick={() => {
-                                    inputRef.current.focus()
-                                    const isOptionSelected = state.includes(option);
-                                    const isStateFull = state.length >= 4;
+                        <>
+                            {
+                                option.label &&
+                                (
+                                    <li
+                                        className='w-full'
+                                        key={index + 1}
+                                    >
+                                        <Checkbox
+                                            className='gap-2'
+                                            color='primary'
+                                            key={index + 1}
+                                            size='md'
+                                            onClick={() => {
+                                                inputRef.current.focus()
+                                                const isOptionSelected = state.some(item => item.id === option.id)
+                                                const isStateFull = state.length >= 4;
 
-                                    if (!isOptionSelected && isStateFull) {
-                                        return;
-                                    }
+                                                if (!isOptionSelected && isStateFull) {
+                                                    return;
+                                                }
 
-                                    dispatch({ type: isOptionSelected ? 'DEL' : 'ADD', payload: option });
-                                    Dispatch(isOptionSelected ? hide({ id: option.id }) : show({ id: option.id }));
-                                }}
-                                isSelected={state.includes(option)}
-                            >{option.label}</Checkbox>
-                        </li>
+                                                dispatch({ type: isOptionSelected ? 'DEL' : 'ADD', payload: option });
+                                                Dispatch(isOptionSelected ? hide({ id: option.id }) : show({ id: option.id }));
+                                            }}
+                                            isSelected={state.some(item => item.id === option.id)}
+                                        >{option.label}</Checkbox>
+                                    </li>
+                                )
+                            }
+                        </>
                     )
                 })}
             </ul>
