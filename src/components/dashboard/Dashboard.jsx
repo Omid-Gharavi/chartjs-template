@@ -15,7 +15,7 @@ const Dashboard = () => {
     }, [])
 
     return (
-        <Card className='w-[300px] max-lg:w-full'>
+        <Card className='w-[300px] max-lg:w-full bg-blue-500 text-white dashboard'>
             <CardBody>
                 <AutoComplete options={data} />
                 <div className='mt-4'>

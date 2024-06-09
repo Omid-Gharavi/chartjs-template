@@ -57,7 +57,7 @@ const AutoComplete = ({ options }) => {
                     setQuery(value)
                 }}
                 onClick={() => setToggle(true)}
-                className="autoCompleteInput mt-4"
+                className="autoCompleteInput mt-4 caret-blue-500"
                 type="text"
                 placeholder="انتخاب کشور"
             />
@@ -105,11 +105,11 @@ const AutoComplete = ({ options }) => {
                 {
                     state.map((data, index) => {
                         return (
-                            <div className='dark w-fit flex items-center gap-2 px-2 border-solid border-black border-[2px] rounded-lg' key={index + 1}>
+                            <div className='bg-white text-black dark w-fit flex items-center gap-2 px-2 border-solid border-black border-[2px] rounded-lg' key={index + 1}>
                                 {data.label}
                                 <div
                                     key={index + 1}
-                                    className='rounded-full flex justify-center items-center border-solid border-[2px] border-black cursor-pointer w-4 h-4'
+                                    className='bg-red-500 text-white rounded-full flex justify-center items-center border-solid border-[2px] border-black cursor-pointer w-4 h-4'
                                     onClick={() => {
                                         dispatch({ type: 'DEL', payload: data })
                                         Dispatch(hide({ id: data.id }))

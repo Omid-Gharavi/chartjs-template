@@ -123,4 +123,9 @@ input {
   .socialMedia:hover>* {
     @apply invert;
   }
+
+  .dashboard {
+    background: rgb(0, 33, 75);
+    background: linear-gradient(24deg, rgba(0, 33, 75, 1) 0%, rgba(11, 85, 185, 1) 100%);
+  }
 }

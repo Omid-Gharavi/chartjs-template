@@ -29,12 +29,14 @@ const Calendar = () => {
             <p className="text-right">انتخاب سال:</p>
             <div className="flex gap-4 items-center mt-4">
                 <Input
+                    className="caret-blue-500"
                     value={inputs.end}
                     onChange={(e) => handleInputChange('end', e.target.value)}
                     label='پایان'
                 />
                 :
                 <Input
+                    className="caret-blue-500"
                     value={inputs.start}
                     onChange={(e) => handleInputChange('start', e.target.value)}
                     label='شروع'
