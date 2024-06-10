@@ -112,7 +112,7 @@ input {
   }
 
   .socialMedia {
-    @apply hover:bg-black flex justify-center items-center scale-[1.2] w-6 h-6 rounded-full border-[1px] border-solid border-black cursor-pointer;
+    @apply hover:bg-blue-600 flex justify-center items-center scale-[1.2] w-6 h-6 rounded-full border-[1px] border-solid border-black cursor-pointer;
     transition: .3s ease;
   }
 
