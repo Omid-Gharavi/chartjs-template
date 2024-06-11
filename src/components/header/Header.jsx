@@ -39,7 +39,9 @@ const Header = () => {
                     <ul className='flex gap-10 max-xl:hidden'>
                         {
                             pages.map((page, index) => (
-                                <li key={index + 1}><Link href={page.href}>{page.name}</Link></li>
+                                <li className="relative headerLines" key={index + 1}><Link href={page.href}>{page.name}</Link>
+                                    <span className="absolute w-full scale-0 h-[2px] bg-blue-600 top-[101%] right-0"></span>
+                                </li>
                             ))
                         }
                     </ul>

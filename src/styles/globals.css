@@ -61,6 +61,15 @@ input {
     @apply min-h-screen;
   }
 
+  .headerLines span {
+    transition: .5s ease
+  }
+
+  .headerLines:hover span {
+    @apply scale-100 origin-center;
+    transform-origin: center center
+  }
+
   .dropDown {
     @apply bg-white h-60 overflow-y-scroll overflow-x-hidden shadow-2xl absolute w-full flex flex-col gap-1 px-1 py-4 rounded-lg z-20;
     transition: .3s ease;
