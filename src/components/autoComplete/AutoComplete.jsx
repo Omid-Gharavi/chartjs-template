@@ -57,7 +57,7 @@ const AutoComplete = ({ options }) => {
                     setQuery(value)
                 }}
                 onClick={() => setToggle(true)}
-                className="autoCompleteInput mt-4 caret-blue-500"
+                className="autoCompleteInput mt-4 caret-blue-500 text-black"
                 type="text"
                 placeholder="انتخاب کشور"
             />

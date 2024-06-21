@@ -47,7 +47,7 @@ const Header = () => {
                     </ul>
                     <Link
                         href={'/signup'}
-                        className='bg-blue-500 text-white flex gap-2 justify-center items-center max-xl:hidden rounded-lg border-zinc-500 border-[1px] px-4 py-2'>
+                        className='bg-blue-500 text-white flex gap-2 justify-center items-center max-xl:hidden rounded-[1rem] border-[1px] px-4 py-2'>
                         <GoSignIn />
                         <p>ثبت نام | ورود</p>
                     </Link>
