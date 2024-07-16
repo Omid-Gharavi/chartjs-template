@@ -30,7 +30,7 @@ const Header = () => {
 
     return (
         <>
-            <Card className='rounded-none sticky top-0 z-20'>
+            <Card className='rounded-none sticky top-0 z-30'>
                 <CardBody className='flex flex-row px-10 max-lg:px-4 py-6 justify-between items-center'>
                     <div>
                         {/* <img src="" alt="Logo" /> */}
